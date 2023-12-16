@@ -1,0 +1,68 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 20rem;
+  height: 15rem;
+  background-color: black;
+  padding: 1rem;
+}
+
+header h1 {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid red;
+}
+
+main {
+  width: 100%;
+  background: whitesmoke;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#create_post {
+  background-color: black;
+  cursor: pointer;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  font-size: 1.2rem;
+}
+
+main #copyBtn {
+  border: none;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+main .upload_container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 29px;
+}
+
+main .upload_container label {
+  font-size: 1.2rem;
+}
