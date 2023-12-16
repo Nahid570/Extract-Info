@@ -37,39 +37,49 @@ function ExtractProductDetails() {
 }
 
 function getProductDetails() {
-  const title_input = document.getElementById("article-form-title");
-  const description_input = document.getElementById("article_body_markdown");
+  try {
+    const title_input = document.getElementById("article-form-title");
+    const description_input = document.getElementById("article_body_markdown");
 
-  chrome.storage.local.get(
-    ["title", "description", "autoUploadCheckbox"],
-    (data) => {
-      console.log(data);
-      setTimeout(() => {
-        title_input.value = data.title ?? "";
-        title_input.dispatchEvent(new Event("input", { bubbles: true }));
-      }, 0);
-
-      // Description input
-      setTimeout(() => {
-        description_input.value = data.description ?? "";
-        description_input.dispatchEvent(new Event("input", { bubbles: true }));
-      }, 100);
-
-      if (data.autoUploadCheckbox) {
+    chrome.storage.local.get(
+      ["title", "description", "autoUploadCheckbox"],
+      (data) => {
+        console.log(data);
         setTimeout(() => {
-          const publishButton = document.querySelector(
-            ".crayons-article-form__footer .c-btn--primary"
-          );
-          if (publishButton) {
-            console.log(publishButton);
-            console.log("Post submitted successfully");
-            publishButton.click();
-            // Submit the form
-            // articleForm.submit();
-            chrome.storage.local.set({ autoUploadCheckbox: false });
+          if (title_input) {
+            title_input.value = data.title ?? "";
+            title_input.dispatchEvent(new Event("input", { bubbles: true }));
           }
-        }, 3000);
+        }, 0);
+
+        // Description input
+        setTimeout(() => {
+          if (description_input) {
+            description_input.value = data.description ?? "";
+            description_input.dispatchEvent(
+              new Event("input", { bubbles: true })
+            );
+          }
+        }, 100);
+
+        if (data.autoUploadCheckbox) {
+          setTimeout(() => {
+            const publishButton = document.querySelector(
+              ".crayons-article-form__footer .c-btn--primary"
+            );
+            if (publishButton) {
+              console.log(publishButton);
+              console.log("Post submitted successfully");
+              publishButton.click();
+              // Submit the form
+              // articleForm.submit();
+              chrome.storage.local.set({ autoUploadCheckbox: false });
+            }
+          }, 3000);
+        }
       }
-    }
-  );
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }
